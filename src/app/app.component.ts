@@ -36,9 +36,13 @@ export class AppComponent implements OnInit {
     fuel2: [null],
   });
 
+  private deferredPrompt: any;
+  public showPWAInstallButton!: boolean;
+
   constructor(private formBuilder: FormBuilder, private elementRef: ElementRef, public themeService: ThemeService) {}
 
   ngOnInit(): void {
+    this.loadPWAListener();
     this.form.valueChanges.subscribe((value) => {
       if (this.form.valid) {
         this.calculateTimeAndFuel(value);
@@ -71,5 +75,22 @@ export class AppComponent implements OnInit {
         emitEvent: false,
       }
     );
+  }
+
+  loadPWAListener() {
+    // https://web.dev/customize-install/
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      this.deferredPrompt = e;
+      this.showPWAInstallButton = true;
+    });
+  }
+  addToHomescreen() {
+    this.deferredPrompt.prompt();
+    this.deferredPrompt.userChoice.then((choiceResult: any) => {
+      if (choiceResult.outcome === 'accepted') {
+        this.showPWAInstallButton = false;
+      }
+    });
   }
 }

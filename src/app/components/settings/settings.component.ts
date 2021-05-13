@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { AppSettings } from 'src/app/models/app-settings';
@@ -14,6 +14,8 @@ export class SettingsComponent implements OnInit {
   @Input() cars!: Car[];
   @Input() form!: FormGroup;
   @Input() settings!: AppSettings;
+  @Input() showPWAInstallButton = false;
+  @Output() addToHomescreen = new EventEmitter<boolean>();
 
   darkMode!: boolean;
 
@@ -38,5 +40,9 @@ export class SettingsComponent implements OnInit {
 
   changeDarkMode(event: MatCheckboxChange) {
     this.themeService.changeDarkMode(event.checked);
+  }
+
+  addToHomescreenClick() {
+    this.addToHomescreen.emit(true);
   }
 }

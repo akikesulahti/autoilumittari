@@ -14,7 +14,13 @@
         <app-speed-comparison [form]="form" [settings]="settings" [cars]="cars"></app-speed-comparison>
       </mat-tab>
       <mat-tab label="ASETUKSET">
-        <app-settings [form]="form" [settings]="settings" [cars]="cars"></app-settings>
+        <app-settings
+          [form]="form"
+          [settings]="settings"
+          [cars]="cars"
+          [showPWAInstallButton]="showPWAInstallButton"
+          (addToHomescreen)="addToHomescreen()"
+        ></app-settings>
       </mat-tab>
       <mat-tab label="FAQ">
         <app-faq></app-faq>

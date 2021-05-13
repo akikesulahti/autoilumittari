@@ -88,7 +88,8 @@
     </ul>
   </div>
 </div>
-<div legend="Yleistä">
+<div>
+  <h3 mat-h3>Yleistä</h3>
   <div class="checkbox-section">
     <ul>
       <li>
@@ -96,5 +97,7 @@
       </li>
     </ul>
   </div>
-  <button mat-button color="primary">LISÄÄ AUTOILUMITTARI ALOITUSNÄYTÖLLE</button>
+  <button *ngIf="showPWAInstallButton" mat-button color="primary" (click)="addToHomescreenClick()">
+    LISÄÄ AUTOILUMITTARI ALOITUSNÄYTÖLLE
+  </button>
 </div>
