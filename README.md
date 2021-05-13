@@ -10,7 +10,7 @@ Live demo: https://autoilumittari.web.app/
   - Angular (typescript + html + scss)
   - Angular Material komponenttikirjasto
   - Firebase Hosting
-  - Windows 10
+  - Kehitysympäristö: Windows 10
 - Ohjeet miten ratkaisusi pystytetään ja käynnistetään
   1. `git clone https://github.com/akikesulahti/autoilumittari`
   2. `npm install`
@@ -39,7 +39,6 @@ Recommended settings (ctrl+shift+P - 'Open Settings (JSON)'):
 {
   // Format
   "editor.tabSize": 2,
-  "files.eol": "\n",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
@@ -48,6 +47,15 @@ Recommended settings (ctrl+shift+P - 'Open Settings (JSON)'):
   }
 }
 ```
+
+## Lighthouse score
+
+- Performance: 100
+- Accessability: 98
+  - Background and foreground colors do not have a sufficient contrast ratio.
+- Best Practices: 100
+- SEO: 100
+- PWA: Passed
 
 ## Angular
 

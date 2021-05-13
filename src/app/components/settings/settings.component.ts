@@ -30,12 +30,31 @@ export class SettingsComponent implements OnInit {
   setValidators() {
     if (this.settings.limitDistance) {
       this.form.controls.distance.setValidators(
-        Validators.compose([Validators.min(1), Validators.max(this.settings.maxDistance)])
+        Validators.compose([Validators.required, Validators.min(1), Validators.max(this.settings.maxDistance)])
       );
     } else {
-      this.form.controls.distance.setValidators([Validators.min(1)]);
+      this.form.controls.distance.setValidators(Validators.compose([Validators.required, Validators.min(1)]));
+    }
+    if (this.settings.limitSpeed) {
+      this.form.controls.speed1.setValidators(
+        Validators.compose([Validators.required, Validators.min(1), Validators.max(this.settings.maxSpeed)])
+      );
+      this.form.controls.speed2.setValidators(
+        Validators.compose([Validators.required, Validators.min(1), Validators.max(this.settings.maxSpeed)])
+      );
+    } else {
+      this.form.controls.speed1.setValidators(Validators.compose([Validators.required, Validators.min(1)]));
+      this.form.controls.speed2.setValidators(Validators.compose([Validators.required, Validators.min(1)]));
     }
     this.form.controls.distance.updateValueAndValidity();
+  }
+
+  addCar() {
+    this.cars.push({ name: 'Uusi', consumption: 1, icon: 'directions_car' });
+  }
+
+  deleteCar(index: number) {
+    this.cars.splice(index, 1);
   }
 
   changeDarkMode(event: MatCheckboxChange) {

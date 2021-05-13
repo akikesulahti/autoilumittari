@@ -5,13 +5,18 @@
 .mat-radio-group,
 .radio-hints {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
-.hide-radio-hint {
-  visibility: hidden;
+:host::ng-deep .mat-radio-label {
+  padding-right: 15px;
 }
+
+/* .hide-radio-hint {
+  visibility: hidden;
+} */
 
 .field-container {
   display: flex;
@@ -61,4 +66,7 @@
 }
 .number-input {
   text-align: right;
+}
+h3 {
+  margin-bottom: 5px;
 }

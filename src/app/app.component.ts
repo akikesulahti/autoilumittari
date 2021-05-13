@@ -22,18 +22,20 @@ export class AppComponent implements OnInit {
     maxDistance: 1000,
     showSpeedSlider: true,
     limitSpeed: true,
-    maxSpeed: 1000,
+    maxSpeed: 120,
   };
 
   form = this.formBuilder.group({
     car: [this.cars[0], Validators.required],
-    distance: [100, Validators.compose([Validators.min(1), Validators.max(1000)])],
-    speed1: [40, Validators.compose([Validators.min(1), Validators.max(120)])],
-    speed2: [60, Validators.compose([Validators.min(1), Validators.max(120)])],
+    distance: [100, Validators.compose([Validators.required, Validators.min(1), Validators.max(1000)])],
+    speed1: [40, Validators.compose([Validators.required, Validators.min(1), Validators.max(120)])],
+    speed2: [60, Validators.compose([Validators.required, Validators.min(1), Validators.max(120)])],
     time1: [null],
     time2: [null],
     fuel1: [null],
     fuel2: [null],
+    averageFuel1: [null],
+    averageFuel2: [null],
   });
 
   private deferredPrompt: any;
@@ -68,6 +70,9 @@ export class AppComponent implements OnInit {
         emitEvent: false,
       }
     );
+    this.form.controls.averageFuel1.setValue(value.car.consumption * Math.pow(1.009, value.speed1 - 1), {
+      emitEvent: false,
+    });
     this.form.controls.time2.setValue(value.distance / value.speed2, { emitEvent: false });
     this.form.controls.fuel2.setValue(
       ((value.distance * value.car.consumption) / 100) * Math.pow(1.009, value.speed2 - 1),
@@ -75,10 +80,12 @@ export class AppComponent implements OnInit {
         emitEvent: false,
       }
     );
+    this.form.controls.averageFuel2.setValue(value.car.consumption * Math.pow(1.009, value.speed2 - 1), {
+      emitEvent: false,
+    });
   }
 
   loadPWAListener() {
-    // https://web.dev/customize-install/
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       this.deferredPrompt = e;

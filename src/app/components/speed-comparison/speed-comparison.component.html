@@ -1,30 +1,41 @@
-<form [formGroup]="form" style="margin-top: 5px">
-  <div>
+<form [formGroup]="form">
+  <mat-card class="mat-elevation-z0">
     <h3 mat-h3>Auto</h3>
     <mat-radio-group formControlName="car" aria-label="Select an option">
       <mat-radio-button *ngFor="let car of cars" [value]="car">
-        {{ car.name }}:
         <mat-icon aria-hidden="false" aria-label="Car icon" class="radio-button-icon"> {{car.icon}} </mat-icon>
+        &nbsp;{{ car.name }}
       </mat-radio-button>
     </mat-radio-group>
-    <div class="radio-hints">
+    <!-- <div class="radio-hints">
       <mat-hint *ngFor="let car of cars" [ngClass]="{'hide-radio-hint': form.controls.car.value !== car}">
         <small>Pienin kulutus {{car.consumption}}l/100km</small>
       </mat-hint>
-    </div>
-  </div>
-  <div>
+    </div> -->
+    <br />
+    <mat-hint>
+      {{form.controls.car.value.name}} - Pienin kulutus: {{form.controls.car.value.consumption}}l/100km
+    </mat-hint>
+  </mat-card>
+  <mat-card class="mat-elevation-z0" style="padding-bottom: 0px">
     <h3 mat-h3>Matka</h3>
     <div class="field-container">
       <div class="input-container">
         <mat-form-field class="custom-input">
           <mat-label>Matka</mat-label>
-          <input type="number" formControlName="distance" matInput class="number-input" />
+          <input
+            type="number"
+            formControlName="distance"
+            matInput
+            class="number-input"
+            (input)="updateDistance($event.target)"
+          />
           <span matSuffix>km</span>
           <mat-error *ngIf="form.controls.distance.hasError('max')">
             Maksimi pituus on {{settings.maxDistance}}km
           </mat-error>
           <mat-error *ngIf="form.controls.distance.hasError('min')"> Minimi pituus on 1km </mat-error>
+          <mat-error *ngIf="form.controls.distance.hasError('required')"> Matka on pakollinen </mat-error>
         </mat-form-field>
       </div>
       <div *ngIf="settings.showDistanceSlider" class="slider-container">
@@ -39,9 +50,9 @@
         ></mat-slider>
       </div>
     </div>
-  </div>
-  <div>
-    <h3 mat-h3>Nopeus</h3>
+  </mat-card>
+  <mat-card class="mat-elevation-z0">
+    <h3 mat-h3>Nopeudet</h3>
     <div
       class="speed-box"
       [ngClass]="{'speed-box-light': !(themeService.currentDarkMode | async), 'speed-box-dark': (themeService.currentDarkMode | async)}"
@@ -60,9 +71,10 @@
             <span matSuffix>km/h</span>
             <mat-error *ngIf="form.controls.speed1.hasError('min')"> Minimi nopeus on 1km/h </mat-error>
             <mat-error *ngIf="form.controls.speed1.hasError('max')"> Maksimi nopeus on 120km/h </mat-error>
+            <mat-error *ngIf="form.controls.speed1.hasError('required')"> Nopeus on pakollinen </mat-error>
           </mat-form-field>
         </div>
-        <div class="slider-container">
+        <div *ngIf="settings.showSpeedSlider" class="slider-container">
           <mat-slider
             formControlName="speed1"
             thumbLabel
@@ -89,7 +101,7 @@
       <br />
       <div *ngIf="form.valid && form.controls.time1.value && form.controls.fuel1.value">
         <div id="textbox">
-          <span class="alignleft">Kulutus: {{form.controls.fuel1.value | number: '1.0-2' }}l </span>
+          <span class="alignleft">Kokonaiskulutus: {{form.controls.fuel1.value | number: '1.0-2' }}l </span>
           <span *ngIf="form.controls.fuel1.value > form.controls.fuel2.value" class="alignright"
             >{{(form.controls.fuel1.value - form.controls.fuel2.value) | number: '1.0-2'}}l suurempi kulutus</span
           >
@@ -97,6 +109,12 @@
             >{{(form.controls.fuel2.value - form.controls.fuel1.value) | number: '1.0-2'}}l pienempi kulutus</span
           >
           <span *ngIf="form.controls.fuel1.value === form.controls.fuel2.value" class="alignright">Sama kulutus</span>
+        </div>
+      </div>
+      <br />
+      <div *ngIf="form.valid && form.controls.time1.value && form.controls.fuel1.value">
+        <div id="textbox">
+          <span class="alignleft">Keskikulutus: {{form.controls.averageFuel1.value | number: '1.0-2' }}l/100km </span>
         </div>
       </div>
     </div>
@@ -119,9 +137,10 @@
             <span matSuffix>km/h</span>
             <mat-error *ngIf="form.controls.speed2.hasError('min')"> Minimi nopeus on 1km/h </mat-error>
             <mat-error *ngIf="form.controls.speed2.hasError('max')"> Maksimi nopeus on 120km/h </mat-error>
+            <mat-error *ngIf="form.controls.speed2.hasError('required')"> Nopeus on pakollinen </mat-error>
           </mat-form-field>
         </div>
-        <div class="slider-container">
+        <div *ngIf="settings.showSpeedSlider" class="slider-container">
           <mat-slider
             formControlName="speed2"
             thumbLabel
@@ -148,7 +167,7 @@
       <br />
       <div *ngIf="form.valid && form.controls.time2.value && form.controls.fuel2.value">
         <div id="textbox">
-          <span class="alignleft">Kulutus: {{form.controls.fuel2.value | number: '1.0-2' }}l </span>
+          <span class="alignleft">Kokonaiskulutus: {{form.controls.fuel2.value | number: '1.0-2' }}l </span>
           <span *ngIf="form.controls.fuel2.value > form.controls.fuel1.value" class="alignright"
             >{{form.controls.fuel2.value - form.controls.fuel1.value | number: '1.0-2'}}l suurempi kulutus</span
           >
@@ -158,6 +177,12 @@
           <span *ngIf="form.controls.fuel1.value === form.controls.fuel2.value" class="alignright">Sama kulutus</span>
         </div>
       </div>
+      <br />
+      <div *ngIf="form.valid && form.controls.time2.value && form.controls.fuel2.value">
+        <div id="textbox">
+          <span class="alignleft">Keskikulutus: {{form.controls.averageFuel2.value | number: '1.0-2' }}l/100km </span>
+        </div>
+      </div>
     </div>
-  </div>
+  </mat-card>
 </form>
