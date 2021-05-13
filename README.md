@@ -7,20 +7,20 @@ Web application to compare car speed and fuel consumption - made for code challe
 Live demo: https://autoilumittari.web.app/
 
 - Mitä teknologioita olet käyttänyt ja millä käyttöjärjestelmällä
-  - Angular (typescript + html + scss)
+  - Angular (Typescript + HTML + SCSS)
   - Angular Material komponenttikirjasto
   - Firebase Hosting
-  - Kehitysympäristö: Windows 10
+  - Kehitysympäristö: Windows 10 + Node v14 + VSCode
 - Ohjeet miten ratkaisusi pystytetään ja käynnistetään
-  1. `git clone https://github.com/akikesulahti/autoilumittari`
+  1. `git clone https://github.com/akikesulahti/autoilumittari.git`
   2. `npm install`
   3. `ng serve -o` (avaa selaimen `http://localhost:4200/`)
 - Muutaman lauseen kuvaus tekemästäsi ratkaisusta
   - PWA Angular sovellus
   - UI on yksi responsiivinen kortti, jonka sisällä 3 tabia - ei muita sivuja - ei reitityksiä
   - Laskuri laskee lennosta muokkaamalla haluttaja arvoja
+  - Chromen Lighthouse Desktop antaa täydet pisteet sekä vaalealla että tummalla teemalla
   - Sovelluksessa ei ole testejä
-  - Lighthouse täydet pisteet sekä vaalealla että tummalla teemalla
 
 ## VSCode settings
 
@@ -54,7 +54,7 @@ Recommended settings (ctrl+shift+P - 'Open Settings (JSON)'):
 - Refactor calculations into service (easier to read and test)
 - Add tests, especially to calculations
 - Refactor two speed sections into one generic code and add new settings selection 'number of different speeds'
-- Add address/map selection where user can search start and end location with address
+- Add address/map selection where user can add start and end location with address
   - Use those addresses to calculate distance eg. with Google APIs
 
 ## Lighthouse score
