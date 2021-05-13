@@ -29,6 +29,7 @@
             matInput
             class="number-input"
             (input)="updateDistance($event.target)"
+            required
           />
           <span matSuffix>km</span>
           <mat-error *ngIf="form.controls.distance.hasError('max')">
@@ -67,6 +68,7 @@
               formControlName="speed1"
               matInput
               class="number-input"
+              required
             />
             <span matSuffix>km/h</span>
             <mat-error *ngIf="form.controls.speed1.hasError('min')"> Minimi nopeus on 1km/h </mat-error>
@@ -133,6 +135,7 @@
               formControlName="speed2"
               matInput
               class="number-input"
+              required
             />
             <span matSuffix>km/h</span>
             <mat-error *ngIf="form.controls.speed2.hasError('min')"> Minimi nopeus on 1km/h </mat-error>

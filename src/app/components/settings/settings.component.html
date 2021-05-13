@@ -45,9 +45,10 @@
         >
         &nbsp;
         <mat-form-field [ngClass]="{'hide-field': !settings.limitDistance}">
-          <mat-label>Matka</mat-label>
-          <span matPrefix>Maksimi:</span>
+          <mat-label>Maksimi matka</mat-label>
           <input
+            required
+            min="1"
             matInput
             type="number"
             class="number-input"
@@ -55,6 +56,7 @@
             (change)="setValidators()"
           />
           <span matSuffix>km</span>
+          <mat-error *ngIf="settings.maxDistance < 1"> Minimi matka on 1km </mat-error>
         </mat-form-field>
       </li>
     </ul>
@@ -71,9 +73,10 @@
         <mat-checkbox [(ngModel)]="settings.limitSpeed" (change)="setValidators()">Rajoita suurin nopeus</mat-checkbox>
         &nbsp;
         <mat-form-field [ngClass]="{'hide-field': !settings.limitSpeed}">
-          <mat-label>Nopeus</mat-label>
-          <span matPrefix>Maksimi:</span>
+          <mat-label>Maksimi nopeus</mat-label>
           <input
+            required
+            min="1"
             matInput
             type="number"
             class="number-input"
@@ -81,6 +84,7 @@
             (change)="setValidators()"
           />
           <span matSuffix>km/h</span>
+          <mat-error *ngIf="settings.maxSpeed < 1"> Minimi nopeus on 1km </mat-error>
         </mat-form-field>
       </li>
       <!-- <li>
