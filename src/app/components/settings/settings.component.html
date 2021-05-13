@@ -13,15 +13,22 @@
         <mat-label>Nimi</mat-label>
         <input matInput [(ngModel)]="cars[index].name" />
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field style="max-width: 115px">
         <mat-label>Kulutus</mat-label>
         <input type="number" matInput [(ngModel)]="cars[index].consumption" class="number-input" />
         <span matSuffix>l/100km</span>
       </mat-form-field>
-      <mat-form-field>
-        <mat-label>Ikoni</mat-label>
-        <input matInput [(ngModel)]="cars[index].icon" />
-      </mat-form-field>
+      <button mat-button [matMenuTriggerFor]="menu" color="primary">
+        IKONI&nbsp;&nbsp;<mat-icon>{{car.icon}}</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="car.icon = 'moped'"><mat-icon>moped</mat-icon></button>
+        <button mat-menu-item (click)="car.icon = 'two_wheeler'"><mat-icon>two_wheeler</mat-icon></button>
+        <button mat-menu-item (click)="car.icon = 'directions_car'"><mat-icon>directions_car</mat-icon></button>
+        <button mat-menu-item (click)="car.icon = 'airport_shuttle'"><mat-icon>airport_shuttle</mat-icon></button>
+        <button mat-menu-item (click)="car.icon = 'local_shipping'"><mat-icon>local_shipping</mat-icon></button>
+        <button mat-menu-item (click)="car.icon = 'flight'"><mat-icon>flight</mat-icon></button>
+      </mat-menu>
       <button mat-button color="warn" (click)="deleteCar(index)">POISTA</button>
     </mat-expansion-panel>
   </mat-accordion>

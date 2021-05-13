@@ -6,8 +6,11 @@
   justify-content: space-between;
   align-items: center;
 }
-.example-headers-align .mat-form-field + .mat-form-field {
+.example-headers-align .mat-form-field {
   margin-left: 6px;
+}
+.mat-form-field {
+  margin-right: 6px;
 }
 .checkbox-section ul {
   list-style-type: none;

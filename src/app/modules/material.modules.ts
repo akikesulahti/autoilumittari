@@ -7,6 +7,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -23,6 +24,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatExpansionModule,
     MatCheckboxModule,
     MatButtonModule,
+    MatMenuModule,
   ],
   exports: [
     MatCardModule,
@@ -35,6 +37,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatExpansionModule,
     MatCheckboxModule,
     MatButtonModule,
+    MatMenuModule,
   ],
 })
 export class MaterialModule {}

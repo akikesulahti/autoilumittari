@@ -10,7 +10,7 @@ body {
   background-color: whitesmoke;
 }
 
-/* Material */
+/* Material dark theme */
 @import '~@angular/material/theming';
 
 $dark-primary: mat-palette($mat-blue-grey);
@@ -22,6 +22,12 @@ $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
   @include angular-material-theme($dark-theme);
 }
 
+/* Link color same as text so it will be visible in light and dark */
 a {
   color: inherit !important;
+}
+
+/* For icon selection menu */
+.mat-menu-panel {
+  min-width: 70px !important;
 }
