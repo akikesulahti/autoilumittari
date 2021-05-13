@@ -48,6 +48,13 @@ Recommended settings (ctrl+shift+P - 'Open Settings (JSON)'):
 }
 ```
 
+## TODO
+
+- Add tests, especially to important calculations
+- Refactor speed section to use generic code and add new settings selection 'number of different speeds'
+- Add address/map selection where user can search start and end location with address
+  - Use those addresses to calculate distance eg. with Google APIs
+
 ## Lighthouse score
 
 - Performance: 100

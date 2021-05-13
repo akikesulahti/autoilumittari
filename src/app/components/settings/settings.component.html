@@ -36,9 +36,6 @@
       <li>
         <mat-checkbox [(ngModel)]="settings.showDistanceSlider">Näytä liukusäädin</mat-checkbox>
       </li>
-      <!-- <li>
-        <mat-checkbox [(ngModel)]="settings.showMap">Näytä kartta</mat-checkbox>
-      </li> -->
       <li>
         <mat-checkbox [(ngModel)]="settings.limitDistance" (change)="setValidators()"
           >Rajoita suurin pituus</mat-checkbox
@@ -87,16 +84,6 @@
           <mat-error *ngIf="settings.maxSpeed < 1"> Minimi nopeus on 1km </mat-error>
         </mat-form-field>
       </li>
-      <!-- <li>
-        <label id="number-speeds">Näytä nopeuksia:</label>
-        <mat-radio-group>
-          <mat-radio-button value="1">1kpl</mat-radio-button>
-          <mat-radio-button value="2" checked>2kpl</mat-radio-button>
-          <mat-radio-button value="3">3kpl</mat-radio-button>
-          <mat-radio-button value="4">4kpl</mat-radio-button>
-          <mat-radio-button value="5">5kpl</mat-radio-button>
-        </mat-radio-group>
-      </li> -->
     </ul>
   </div>
 </mat-card>

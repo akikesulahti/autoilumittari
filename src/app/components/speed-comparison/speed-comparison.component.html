@@ -7,11 +7,6 @@
         &nbsp;{{ car.name }}
       </mat-radio-button>
     </mat-radio-group>
-    <!-- <div class="radio-hints">
-      <mat-hint *ngFor="let car of cars" [ngClass]="{'hide-radio-hint': form.controls.car.value !== car}">
-        <small>Pienin kulutus {{car.consumption}}l/100km</small>
-      </mat-hint>
-    </div> -->
     <br />
     <mat-hint>
       {{form.controls.car.value.name}} - Pienin kulutus: {{form.controls.car.value.consumption}}l/100km
