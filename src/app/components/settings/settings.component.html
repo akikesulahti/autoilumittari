@@ -1,1 +1,98 @@
-<p>settings works!</p>
+<div style="margin-top: 5px">
+  <h3 mat-h3>Autot</h3>
+  <mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel *ngFor="let car of cars; let index = index" class="mat-elevation-z1">
+      <mat-expansion-panel-header>
+        <mat-panel-title> {{ car.name }} </mat-panel-title>
+        <mat-panel-description>
+          {{ car.consumption }}l/100km
+          <mat-icon>{{ car.icon }}</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-form-field>
+        <mat-label>Nimi</mat-label>
+        <input matInput [(ngModel)]="cars[index].name" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Kulutus</mat-label>
+        <input type="number" matInput [(ngModel)]="cars[index].consumption" class="number-input" />
+        <span matSuffix>l/100km</span>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Ikoni</mat-label>
+        <input matInput [(ngModel)]="cars[index].icon" />
+      </mat-form-field>
+      <button mat-button color="warn">POISTA</button>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <button mat-button color="primary" style="float: right; margin-top: 10px">LISÄÄ UUSI AUTO</button>
+</div>
+<div>
+  <h3 mat-h3>Matka</h3>
+  <div class="checkbox-section">
+    <ul>
+      <li>
+        <mat-checkbox [(ngModel)]="settings.showDistanceSlider">Näytä liukusäädin</mat-checkbox>
+      </li>
+      <!-- <li>
+        <mat-checkbox [(ngModel)]="settings.showMap">Näytä kartta</mat-checkbox>
+      </li> -->
+      <li>
+        <mat-checkbox [(ngModel)]="settings.limitDistance" (change)="setValidators()"
+          >Rajoita suurin pituus</mat-checkbox
+        >
+        &nbsp;
+        <mat-form-field>
+          <span matPrefix>Maksimi:</span>
+          <input
+            matInput
+            type="number"
+            class="number-input"
+            [(ngModel)]="settings.maxDistance"
+            (change)="setValidators()"
+          />
+          <span matSuffix>km</span>
+        </mat-form-field>
+      </li>
+    </ul>
+  </div>
+</div>
+<div>
+  <h3 mat-h3>Nopeudet</h3>
+  <div class="checkbox-section">
+    <ul>
+      <li>
+        <mat-checkbox [checked]="true">Näytä liukusäädin</mat-checkbox>
+      </li>
+      <li>
+        <mat-checkbox [checked]="true">Rajoita suurin nopeus</mat-checkbox>
+        &nbsp;
+        <mat-form-field>
+          <span matPrefix>Maksimi:</span>
+          <input matInput type="number" value="120" class="number-input" />
+          <span matSuffix>km/h</span>
+        </mat-form-field>
+      </li>
+      <!-- <li>
+        <label id="number-speeds">Näytä nopeuksia:</label>
+        <mat-radio-group>
+          <mat-radio-button value="1">1kpl</mat-radio-button>
+          <mat-radio-button value="2" checked>2kpl</mat-radio-button>
+          <mat-radio-button value="3">3kpl</mat-radio-button>
+          <mat-radio-button value="4">4kpl</mat-radio-button>
+          <mat-radio-button value="5">5kpl</mat-radio-button>
+        </mat-radio-group>
+      </li> -->
+    </ul>
+  </div>
+</div>
+<div legend="Yleistä">
+  <div class="checkbox-section">
+    <ul>
+      <li>
+        <mat-checkbox>Tumma teema</mat-checkbox>
+      </li>
+    </ul>
+  </div>
+  <button mat-button color="primary">LISÄÄ AUTOILUMITTARI ALOITUSNÄYTÖLLE</button>
+</div>

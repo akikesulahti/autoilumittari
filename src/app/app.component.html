@@ -1,10 +1,19 @@
 <mat-card>
-  <mat-tab-group>
-    <mat-tab label="Vertaile">
-      <app-speed-comparison></app-speed-comparison>
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon style="font-size: 36px" color="primary">
+        <span class="material-icons-outlined"> emoji_transportation </span>
+      </mat-icon>
+    </div>
+    <mat-card-title>Autoilumittari</mat-card-title>
+    <mat-card-subtitle>Vertaile matka-aikaa ja polttoaineen kulutusta</mat-card-subtitle>
+  </mat-card-header>
+  <mat-tab-group mat-stretch-tabs>
+    <mat-tab label="VERTAILE">
+      <app-speed-comparison [form]="form" [settings]="settings" [cars]="cars"></app-speed-comparison>
     </mat-tab>
-    <mat-tab label="Asetukset">
-      <app-settings></app-settings>
+    <mat-tab label="ASETUKSET">
+      <app-settings [form]="form" [settings]="settings" [cars]="cars"></app-settings>
     </mat-tab>
     <mat-tab label="FAQ">
       <app-faq></app-faq>

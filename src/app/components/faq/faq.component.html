@@ -1,1 +1,54 @@
-<p>faq works!</p>
+<div style="margin-top: 5px">
+  <h3 mat-h3>FAQ</h3>
+  <mat-accordion multi>
+    <mat-expansion-panel class="mat-elevation-z1">
+      <mat-expansion-panel-header>
+        <mat-panel-title> Mikä on Autoilumittari? </mat-panel-title>
+        <mat-panel-description> </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>
+        Web-sovellus matka-ajan ja polttoaineen kulutuksen väliseen vertailuun. Sovellus on tehty osana Solidabiksen
+        koodihaastetta:
+        <a href="https://koodihaaste.solidabis.com/" target="_blank" rel="noopener">
+          https://koodihaaste.solidabis.com/
+        </a>
+      </p>
+    </mat-expansion-panel>
+    <mat-expansion-panel class="mat-elevation-z1">
+      <mat-expansion-panel-header>
+        <mat-panel-title> Miten se toimii? </mat-panel-title>
+        <mat-panel-description> </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      Tehtävänannon mukaan:<br />
+      <p>
+        Autojen bensankulutus kasvaa 1.009 kulmakertoimella. Eli jos auton nopeus kasvaa 1km/h, niin bensankulutus
+        kasvaa 1.009 kertaiseksi. Eri autojen bensakulutus 1km/h nopeudella on seuraava:
+      </p>
+      <ul>
+        <li>Auto A: 3l / 100km</li>
+        <li>Auto B: 3.5l / 100km</li>
+        <li>Auto C: 4l / 100km</li>
+      </ul>
+    </mat-expansion-panel>
+    <mat-expansion-panel class="mat-elevation-z1">
+      <mat-expansion-panel-header>
+        <mat-panel-title> Kuka tämän on tehnyt? </mat-panel-title>
+        <mat-panel-description> </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>
+        Aki kesulahti. Lähdekoodi:
+        <a href="https://github.com/akikesulahti/autoilumittari" target="_blank" rel="noopener">
+          https://github.com/akikesulahti/autoilumittari
+        </a>
+      </p>
+    </mat-expansion-panel>
+    <mat-expansion-panel class="mat-elevation-z1">
+      <mat-expansion-panel-header>
+        <mat-panel-title> Tietosuojakäytäntö </mat-panel-title>
+        <mat-panel-description> </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>Autoilumittari ei kerää mitään dataa käytöstä, käyttäjästä, verkkoliikenteestä eikä mistään muusta.</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

@@ -1,1 +1,156 @@
-<p>speed-comparison works!</p>
+<form [formGroup]="form" style="margin-top: 5px">
+  <div>
+    <h3 mat-h3>Auto</h3>
+    <mat-radio-group formControlName="car" aria-label="Select an option">
+      <mat-radio-button *ngFor="let car of cars" [value]="car">
+        {{ car.name }}:
+        <mat-icon aria-hidden="false" aria-label="Car icon" class="radio-button-icon"> {{car.icon}} </mat-icon>
+      </mat-radio-button>
+    </mat-radio-group>
+    <div class="radio-hints">
+      <mat-hint *ngFor="let car of cars" [ngClass]="{'hide-radio-hint': form.controls.car.value !== car}">
+        <small>Pienin kulutus {{car.consumption}}l/100km</small>
+      </mat-hint>
+    </div>
+  </div>
+  <div>
+    <h3 mat-h3>Matka</h3>
+    <div class="field-container">
+      <div class="input-container">
+        <mat-form-field class="custom-input">
+          <input type="number" formControlName="distance" matInput class="number-input" />
+          <span matSuffix>km</span>
+          <mat-error *ngIf="form.controls.distance.hasError('max')">
+            Maksimi pituus on {{settings.maxDistance}}km
+          </mat-error>
+          <mat-error *ngIf="form.controls.distance.hasError('min')"> Minimi pituus on 1km </mat-error>
+        </mat-form-field>
+      </div>
+      <div *ngIf="settings.showDistanceSlider" class="slider-container">
+        <mat-slider
+          formControlName="distance"
+          thumbLabel
+          min="1"
+          [max]="settings.maxDistance"
+          aria-label="units"
+          (input)="updateDistance($event)"
+          class="custom-slider"
+        ></mat-slider>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h3 mat-h3>Nopeus</h3>
+    <div class="speed-box">
+      <div class="field-container">
+        <div class="input-container">
+          <mat-form-field class="custom-input">
+            <mat-label>Nopeus 1</mat-label>
+            <input
+              (input)="updateSpeed1($event.target)"
+              type="number"
+              formControlName="speed1"
+              matInput
+              class="number-input"
+            />
+            <span matSuffix>km/h</span>
+            <mat-error *ngIf="form.controls.speed1.hasError('min')"> Minimi nopeus on 1km/h </mat-error>
+            <mat-error *ngIf="form.controls.speed1.hasError('max')"> Maksimi nopeus on 120km/h </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="slider-container">
+          <mat-slider
+            formControlName="speed1"
+            thumbLabel
+            min="1"
+            max="120"
+            aria-label="units"
+            class="custom-slider"
+            (input)="updateSpeed1($event)"
+          ></mat-slider>
+        </div>
+      </div>
+      <div *ngIf="form.valid && form.controls.time1.value && form.controls.fuel1.value">
+        <div id="textbox">
+          <span class="alignleft">Aika: {{form.controls.time1.value | number: '1.0-2' }}h </span>
+          <span *ngIf="form.controls.time1.value < form.controls.time2.value" class="alignright better-value"
+            >{{form.controls.time2.value - form.controls.time1.value | number: '1.0-2'}}h nopeampi</span
+          >
+          <span *ngIf="form.controls.time1.value > form.controls.time2.value" class="alignright"
+            >{{form.controls.time1.value - form.controls.time2.value | number: '1.0-2'}}h hitaampi</span
+          >
+          <span *ngIf="form.controls.time1.value === form.controls.time2.value" class="alignright">Sama aika</span>
+        </div>
+      </div>
+      <br />
+      <div *ngIf="form.valid && form.controls.time1.value && form.controls.fuel1.value">
+        <div id="textbox">
+          <span class="alignleft">Kulutus: {{form.controls.fuel1.value | number: '1.0-2' }}l </span>
+          <span *ngIf="form.controls.fuel1.value > form.controls.fuel2.value" class="alignright"
+            >{{(form.controls.fuel1.value - form.controls.fuel2.value) | number: '1.0-2'}}l suurempi kulutus</span
+          >
+          <span *ngIf="form.controls.fuel2.value > form.controls.fuel1.value" class="alignright better-value"
+            >{{(form.controls.fuel2.value - form.controls.fuel1.value) | number: '1.0-2'}}l pienempi kulutus</span
+          >
+          <span *ngIf="form.controls.fuel1.value === form.controls.fuel2.value" class="alignright">Sama kulutus</span>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="speed-box">
+      <div class="field-container">
+        <div class="input-container">
+          <mat-form-field class="custom-input">
+            <mat-label>Nopeus 2</mat-label>
+            <input
+              (input)="updateSpeed2($event.target)"
+              type="number"
+              formControlName="speed2"
+              matInput
+              class="number-input"
+            />
+            <span matSuffix>km/h</span>
+            <mat-error *ngIf="form.controls.speed2.hasError('min')"> Minimi nopeus on 1km/h </mat-error>
+            <mat-error *ngIf="form.controls.speed2.hasError('max')"> Maksimi nopeus on 120km/h </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="slider-container">
+          <mat-slider
+            formControlName="speed2"
+            thumbLabel
+            min="1"
+            max="120"
+            aria-label="units"
+            class="custom-slider"
+            (input)="updateSpeed2($event)"
+          ></mat-slider>
+        </div>
+      </div>
+      <div *ngIf="form.valid && form.controls.time2.value && form.controls.fuel2.value">
+        <div id="textbox">
+          <span class="alignleft">Aika: {{form.controls.time2.value | number: '1.0-2' }}h </span>
+          <span *ngIf="form.controls.time2.value < form.controls.time1.value" class="alignright better-value"
+            >{{form.controls.time1.value - form.controls.time2.value | number: '1.0-2'}}h nopeampi</span
+          >
+          <span *ngIf="form.controls.time2.value > form.controls.time1.value" class="alignright"
+            >{{form.controls.time2.value - form.controls.time1.value | number: '1.0-2' }}h hitaampi</span
+          >
+          <span *ngIf="form.controls.time1.value === form.controls.time2.value" class="alignright">Sama aika</span>
+        </div>
+      </div>
+      <br />
+      <div *ngIf="form.valid && form.controls.time2.value && form.controls.fuel2.value">
+        <div id="textbox">
+          <span class="alignleft">Kulutus: {{form.controls.fuel2.value | number: '1.0-2' }}l </span>
+          <span *ngIf="form.controls.fuel2.value > form.controls.fuel1.value" class="alignright"
+            >{{form.controls.fuel2.value - form.controls.fuel1.value | number: '1.0-2'}}l suurempi kulutus</span
+          >
+          <span *ngIf="form.controls.fuel1.value > form.controls.fuel2.value" class="alignright better-value"
+            >{{form.controls.fuel1.value - form.controls.fuel2.value | number: '1.0-2'}}l pienempi kulutus</span
+          >
+          <span *ngIf="form.controls.fuel1.value === form.controls.fuel2.value" class="alignright">Sama kulutus</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

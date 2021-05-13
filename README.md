@@ -17,7 +17,7 @@ Live demo: https://autoilumittari.web.app/
   3. `ng serve -o` (avaa selaimen `http://localhost:4200/`)
 - Muutaman lauseen kuvaus tekemästäsi ratkaisusta
   - PWA Angular sovellus
-  - UI on yksi kortti, jonka sisällä 3 tabia
+  - UI on yksi responsiivinen kortti, jonka sisällä 3 tabia
   - Laskuri laskee lennosta muokkaamalla haluttaja arvoja
   - Ei eri sivuja/reitityksiä
 

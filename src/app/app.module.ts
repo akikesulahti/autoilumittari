@@ -1,6 +1,7 @@
 import { registerLocaleData } from '@angular/common';
 import localeFi from '@angular/common/locales/fi';
 import { LOCALE_ID, NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -25,6 +26,8 @@ registerLocaleData(localeFi, 'fi');
     }),
     BrowserAnimationsModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'fi' }],
   bootstrap: [AppComponent],

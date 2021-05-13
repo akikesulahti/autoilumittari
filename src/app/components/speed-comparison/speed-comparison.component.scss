@@ -1,0 +1,59 @@
+.radio-button-icon {
+  vertical-align: middle;
+}
+
+.mat-radio-group,
+.radio-hints {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.hide-radio-hint {
+  visibility: hidden;
+}
+
+.field-container {
+  display: flex;
+}
+
+.field-column {
+  width: 50%;
+}
+
+.input-container {
+  width: 25%;
+}
+
+.custom-input {
+  width: 100%;
+}
+
+.slider-container {
+  width: 75%;
+}
+
+.custom-slider {
+  margin-top: 15px;
+  width: 100%;
+}
+
+.speed-box {
+  background-color: whitesmoke;
+  padding: 10px;
+  border-radius: 5px;
+  padding-bottom: 30px;
+}
+
+.alignleft {
+  float: left;
+}
+.alignright {
+  float: right;
+}
+.better-value {
+  font-weight: 500;
+}
+.number-input {
+  text-align: right;
+}
