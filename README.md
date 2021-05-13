@@ -20,6 +20,7 @@ Live demo: https://autoilumittari.web.app/
   - UI on yksi responsiivinen kortti, jonka sisällä 3 tabia - ei muita sivuja - ei reitityksiä
   - Laskuri laskee lennosta muokkaamalla haluttaja arvoja
   - Sovelluksessa ei ole testejä
+  - Lighthouse täydet pisteet sekä vaalealla että tummalla teemalla
 
 ## VSCode settings
 
@@ -50,16 +51,18 @@ Recommended settings (ctrl+shift+P - 'Open Settings (JSON)'):
 
 ## TODO
 
-- Add tests, especially to important calculations
-- Refactor speed section to use generic code and add new settings selection 'number of different speeds'
+- Refactor calculations into service (easier to read and test)
+- Add tests, especially to calculations
+- Refactor two speed sections into one generic code and add new settings selection 'number of different speeds'
 - Add address/map selection where user can search start and end location with address
   - Use those addresses to calculate distance eg. with Google APIs
 
 ## Lighthouse score
 
+Light & Dark mode:
+
 - Performance: 100
-- Accessability: 98
-  - Background and foreground colors do not have a sufficient contrast ratio.
+- Accessability: 100
 - Best Practices: 100
 - SEO: 100
 - PWA: Passed
