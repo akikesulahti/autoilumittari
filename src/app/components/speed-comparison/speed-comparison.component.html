@@ -88,12 +88,12 @@
       </div>
       <div *ngIf="form.valid && form.controls.time1.value && form.controls.fuel1.value">
         <div id="textbox">
-          <span class="alignleft">Aika: {{form.controls.time1.value | number: '1.0-2' }}h </span>
+          <span class="alignleft">Aika: {{form.controls.time1.value | time }} </span>
           <span *ngIf="form.controls.time1.value < form.controls.time2.value" class="alignright better-value"
-            >{{form.controls.time2.value - form.controls.time1.value | number: '1.0-2'}}h nopeampi</span
+            >{{form.controls.time2.value - form.controls.time1.value | time }} nopeampi</span
           >
           <span *ngIf="form.controls.time1.value > form.controls.time2.value" class="alignright"
-            >{{form.controls.time1.value - form.controls.time2.value | number: '1.0-2'}}h hitaampi</span
+            >{{form.controls.time1.value - form.controls.time2.value | time }} hitaampi</span
           >
           <span *ngIf="form.controls.time1.value === form.controls.time2.value" class="alignright">Sama aika</span>
         </div>
@@ -154,12 +154,12 @@
       </div>
       <div *ngIf="form.valid && form.controls.time2.value && form.controls.fuel2.value">
         <div id="textbox">
-          <span class="alignleft">Aika: {{form.controls.time2.value | number: '1.0-2' }}h </span>
+          <span class="alignleft">Aika: {{form.controls.time2.value | time }} </span>
           <span *ngIf="form.controls.time2.value < form.controls.time1.value" class="alignright better-value"
-            >{{form.controls.time1.value - form.controls.time2.value | number: '1.0-2'}}h nopeampi</span
+            >{{form.controls.time1.value - form.controls.time2.value | time }} nopeampi</span
           >
           <span *ngIf="form.controls.time2.value > form.controls.time1.value" class="alignright"
-            >{{form.controls.time2.value - form.controls.time1.value | number: '1.0-2' }}h hitaampi</span
+            >{{form.controls.time2.value - form.controls.time1.value | time }} hitaampi</span
           >
           <span *ngIf="form.controls.time1.value === form.controls.time2.value" class="alignright">Sama aika</span>
         </div>

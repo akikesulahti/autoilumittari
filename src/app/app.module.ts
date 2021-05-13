@@ -11,11 +11,12 @@ import { FaqComponent } from './components/faq/faq.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { SpeedComparisonComponent } from './components/speed-comparison/speed-comparison.component';
 import { MaterialModule } from './modules/material.modules';
+import { TimePipe } from './pipes/time.pipe';
 
 registerLocaleData(localeFi, 'fi');
 
 @NgModule({
-  declarations: [AppComponent, SpeedComparisonComponent, SettingsComponent, FaqComponent],
+  declarations: [AppComponent, SpeedComparisonComponent, SettingsComponent, FaqComponent, TimePipe],
   imports: [
     BrowserModule,
     ServiceWorkerModule.register('ngsw-worker.js', {

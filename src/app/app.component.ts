@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AppForm } from './models/app-form';
 import { AppSettings } from './models/app-settings';
 import { Car } from './models/car';
 import { ThemeService } from './services/theme.service';
@@ -38,20 +39,21 @@ export class AppComponent implements OnInit {
     averageFuel2: [null],
   });
 
-  private deferredPrompt: any;
+  private deferredPrompt!: BeforeInstallPromptEvent;
   public showPWAInstallButton!: boolean;
 
   constructor(private formBuilder: FormBuilder, private elementRef: ElementRef, public themeService: ThemeService) {}
 
   ngOnInit(): void {
     this.loadPWAListener();
-    this.form.valueChanges.subscribe((value) => {
+    // If any value in form changes then calculate time and fuel
+    this.form.valueChanges.subscribe((value: AppForm) => {
       if (this.form.valid) {
         this.calculateTimeAndFuel(value);
       }
     });
     this.calculateTimeAndFuel(this.form.value);
-    // Theme
+    // Listen dark/light theme changes
     this.themeService.currentDarkMode.subscribe((darkMode: boolean) => {
       localStorage.setItem('darkMode', darkMode.toString());
       if (darkMode) {
@@ -62,7 +64,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  calculateTimeAndFuel(value: any) {
+  calculateTimeAndFuel(value: AppForm) {
     this.form.controls.time1.setValue(value.distance / value.speed1, { emitEvent: false });
     this.form.controls.fuel1.setValue(
       ((value.distance * value.car.consumption) / 100) * Math.pow(1.009, value.speed1 - 1),
@@ -85,16 +87,19 @@ export class AppComponent implements OnInit {
     });
   }
 
+  // Prevent default PWA istallation popup
   loadPWAListener() {
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      this.deferredPrompt = e;
+    window.addEventListener('beforeinstallprompt', (event) => {
+      event.preventDefault();
+      this.deferredPrompt = event as BeforeInstallPromptEvent;
       this.showPWAInstallButton = true;
     });
   }
+
+  // Promt PWA install to browser
   addToHomescreen() {
     this.deferredPrompt.prompt();
-    this.deferredPrompt.userChoice.then((choiceResult: any) => {
+    this.deferredPrompt.userChoice.then((choiceResult) => {
       if (choiceResult.outcome === 'accepted') {
         this.showPWAInstallButton = false;
       }
