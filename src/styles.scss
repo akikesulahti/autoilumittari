@@ -13,8 +13,8 @@ body {
 /* Material dark theme */
 @import '~@angular/material/theming';
 
-$dark-primary: mat-palette($mat-blue-grey);
-$dark-accent: mat-palette($mat-amber, A200, A100, A400);
+$dark-primary: mat-palette($mat-cyan);
+$dark-accent: mat-palette($mat-amber);
 $dark-warn: mat-palette($mat-deep-orange);
 $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
@@ -30,4 +30,12 @@ a {
 /* For icon selection menu */
 .mat-menu-panel {
   min-width: 70px !important;
+}
+
+/* For lighthouse Accessability */
+.mat-tab-label {
+  opacity: 0.9 !important;
+}
+.mat-form-field-label {
+  color: rgba(0, 0, 0, 0.8) !important;
 }
