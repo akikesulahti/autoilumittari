@@ -18,6 +18,7 @@
     <div class="field-container">
       <div class="input-container">
         <mat-form-field class="custom-input">
+          <mat-label>Matka</mat-label>
           <input type="number" formControlName="distance" matInput class="number-input" />
           <span matSuffix>km</span>
           <mat-error *ngIf="form.controls.distance.hasError('max')">
