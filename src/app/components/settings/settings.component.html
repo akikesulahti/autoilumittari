@@ -29,7 +29,9 @@
         <button mat-menu-item (click)="car.icon = 'local_shipping'"><mat-icon>local_shipping</mat-icon></button>
         <button mat-menu-item (click)="car.icon = 'flight'"><mat-icon>flight</mat-icon></button>
       </mat-menu>
-      <button mat-button color="warn" (click)="deleteCar(index)">POISTA</button>
+      <button mat-button color="warn" (click)="deleteCar(index)" [disabled]="form.controls.car.value === car">
+        POISTA
+      </button>
     </mat-expansion-panel>
   </mat-accordion>
   <mat-card-actions>
