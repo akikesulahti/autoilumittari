@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { AppSettings } from 'src/app/models/app-settings';
 import { Car } from 'src/app/models/car';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-settings',
@@ -13,9 +15,15 @@ export class SettingsComponent implements OnInit {
   @Input() form!: FormGroup;
   @Input() settings!: AppSettings;
 
-  constructor() {}
+  darkMode!: boolean;
 
-  ngOnInit(): void {}
+  constructor(private themeService: ThemeService) {}
+
+  ngOnInit(): void {
+    this.themeService.currentDarkMode.subscribe((darkMode: boolean) => {
+      this.darkMode = darkMode;
+    });
+  }
 
   setValidators() {
     if (this.settings.limitDistance) {
@@ -26,5 +34,9 @@ export class SettingsComponent implements OnInit {
       this.form.controls.distance.setValidators([Validators.min(1)]);
     }
     this.form.controls.distance.updateValueAndValidity();
+  }
+
+  changeDarkMode(event: MatCheckboxChange) {
+    this.themeService.changeDarkMode(event.checked);
   }
 }

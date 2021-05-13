@@ -42,7 +42,10 @@
   </div>
   <div>
     <h3 mat-h3>Nopeus</h3>
-    <div class="speed-box">
+    <div
+      class="speed-box"
+      [ngClass]="{'speed-box-light': !(themeService.currentDarkMode | async), 'speed-box-dark': (themeService.currentDarkMode | async)}"
+    >
       <div class="field-container">
         <div class="input-container">
           <mat-form-field class="custom-input">
@@ -98,7 +101,10 @@
       </div>
     </div>
     <br />
-    <div class="speed-box">
+    <div
+      class="speed-box"
+      [ngClass]="{'speed-box-light': !(themeService.currentDarkMode | async), 'speed-box-dark': (themeService.currentDarkMode | async)}"
+    >
       <div class="field-container">
         <div class="input-container">
           <mat-form-field class="custom-input">

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AppSettings } from 'src/app/models/app-settings';
 import { Car } from 'src/app/models/car';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-speed-comparison',
@@ -13,7 +14,7 @@ export class SpeedComparisonComponent implements OnInit {
   @Input() form!: FormGroup;
   @Input() settings!: AppSettings;
 
-  constructor() {}
+  constructor(public themeService: ThemeService) {}
 
   ngOnInit(): void {}
 

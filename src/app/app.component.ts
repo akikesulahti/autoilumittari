@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AppSettings } from './models/app-settings';
 import { Car } from './models/car';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -35,7 +36,7 @@ export class AppComponent implements OnInit {
     fuel2: [null],
   });
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private elementRef: ElementRef, public themeService: ThemeService) {}
 
   ngOnInit(): void {
     this.form.valueChanges.subscribe((value) => {
@@ -44,6 +45,15 @@ export class AppComponent implements OnInit {
       }
     });
     this.calculateTimeAndFuel(this.form.value);
+    // Theme
+    this.themeService.currentDarkMode.subscribe((darkMode: boolean) => {
+      localStorage.setItem('darkMode', darkMode.toString());
+      if (darkMode) {
+        this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#303030';
+      } else {
+        this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'whitesmoke';
+      }
+    });
   }
 
   calculateTimeAndFuel(value: any) {

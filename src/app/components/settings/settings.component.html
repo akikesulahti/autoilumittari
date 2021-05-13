@@ -92,7 +92,7 @@
   <div class="checkbox-section">
     <ul>
       <li>
-        <mat-checkbox>Tumma teema</mat-checkbox>
+        <mat-checkbox (change)="changeDarkMode($event)" [(ngModel)]="darkMode">Tumma teema</mat-checkbox>
       </li>
     </ul>
   </div>

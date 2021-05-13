@@ -39,10 +39,15 @@
 }
 
 .speed-box {
-  background-color: whitesmoke;
   padding: 10px;
   border-radius: 5px;
   padding-bottom: 30px;
+}
+.speed-box-light {
+  background-color: whitesmoke;
+}
+.speed-box-dark {
+  background-color: #303030;
 }
 
 .alignleft {
